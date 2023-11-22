@@ -8,12 +8,21 @@
   </head>
   <body>
     <h1>hello world</h1>
+    <form method="post" enctype="application/x-www-form-urlencoded" action="/api">
+        
+        <input type="text" name="description" placeholder="description">
+        <input type="hidden" name="author" value="Diégo">
+        <input type="text" name="src" placeholder="src">
+        <input type="text" name="title" placeholder="title">
+        <input type="submit" name="submit" value="envoyer">
+    </form>
+
     <div id="gallery"></div>
 
     <script>
         showPictures() ;
       async function showPictures() {
-        const reponse = await fetch("http://localhost:3000/api/?page=1&limit=5");
+        const reponse = await fetch("http://localhost:3000/api/?page=1&limit=100");
         const pictures = await reponse.json();
         console.log(pictures);
 
