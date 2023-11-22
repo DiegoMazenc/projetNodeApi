@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>hello world</h1>
+    <div id="gallery"></div>
+
+    <script>
+        showPictures() ;
+      async function showPictures() {
+        const reponse = await fetch("http://localhost:3000/api/?page=1&limit=5");
+        const pictures = await reponse.json();
+        console.log(pictures);
+
+        const gallery = document.querySelector('#gallery');
+
+            pictures.forEach(picture => {
+                const imgElement = document.createElement('img');
+                imgElement.src = picture.src;
+                imgElement.alt = picture.title;
+                gallery.appendChild(imgElement);
+            });
+      }
+
+    </script>
+  </body>
+</html>
